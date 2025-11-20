@@ -1,0 +1,26 @@
+.custom-input::placeholder {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0%;
+  color: rgba(0, 0, 0, 0.25);
+}
+
+.custom-input {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0%;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
