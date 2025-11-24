@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Text } from "../pages/OtherPages/ui/Text";
 import { TEXT_STYLES } from "../pages/OtherPages/ui/home";
+import clsx from "clsx";
 
 const BOTTOM_NAV_ITEMS = ["Home", "Payments", "History", "Analytics", "Chats"];
 
@@ -41,10 +42,9 @@ export const BottomNavigation: React.FC = () => {
   return (
     <div className="flex justify-around items-center pb-6 bg-black rounded-3xl">
       {BOTTOM_NAV_ITEMS.map((item) => {
-        const isActive =
-          item === "Home" ? isHomePage : activeBottomNav === item;
-
+        const isActive = item === "Home" ? isHomePage : activeBottomNav === item;
         const iconPath = `/icons_other/${item.toLowerCase()}.svg`;
+
         return (
           <button
             key={item}
@@ -57,18 +57,16 @@ export const BottomNavigation: React.FC = () => {
               className="w-5 h-5 mb-1 transition-all duration-200 group-hover:scale-110"
               style={{
                 filter: isActive
-                  ? "invert(61%) sepia(98%) saturate(2584%) hue-rotate(360deg) brightness(101%) contrast(105%)"
+                  ? "invert(75%) sepia(98%) saturate(2584%) hue-rotate(360deg) brightness(101%) contrast(105%)"
                   : "none",
               }}
             />
             <Text
-              style={{
-                ...TEXT_STYLES.small,
-                color: isActive
-                  ? "rgba(254, 89, 0, 1)"
-                  : "rgba(255, 255, 255, 1)",
-              }}
-              className="truncate text-center w-full group-hover:text-gray-300 transition-colors duration-200"
+              className={clsx(
+                TEXT_STYLES.small,
+                "truncate text-center w-full transition-colors duration-200",
+                isActive ? "text-[#FE5900]" : "text-white"
+              )}
             >
               {item}
             </Text>

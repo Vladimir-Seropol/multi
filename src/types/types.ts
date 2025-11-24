@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 export interface FormData {
   email: string;
@@ -122,11 +122,11 @@ export interface AuthLayoutProps {
 
 
 
-export interface TextProps {
-  children: React.ReactNode;
-  style?: React.CSSProperties;
+export type TextProps = {
+  children: React.ReactNode; 
   className?: string;
-}
+  style?: CSSProperties;
+};
 
 export interface AuthHeaderProps {
   title: string;

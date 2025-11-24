@@ -33,12 +33,12 @@ export const useHome = (userData?: HomeProps["userData"]) => {
 
   const handleNavigationClick = useCallback((item: NavigationItem): void => {
     setActiveNav(item.name);
-    console.log(`Navigating to ${item.name}`);
+    
   }, []);
 
   const handleBottomNavClick = useCallback((item: string): void => {
     setActiveBottomNav(item);
-    console.log(`Bottom nav: ${item}`);
+    
   }, []);
 
   return {

@@ -1,4 +1,4 @@
-// src/components/pages/OtherPages/HomePage/Home.tsx
+// Home.tsx
 import React, { useMemo } from "react";
 import type { HomeProps } from "../../../../types/types";
 import { useHome } from "../../../../hooks/useHome";
@@ -14,15 +14,12 @@ import { BalanceCards } from "../HomePage/BalanceCards";
 import { Header } from "../../../layout/Header";
 import { BottomNavigation } from "../../../layout/BottomNavigation";
 import { useNavigate } from "react-router-dom";
+import clsx from "clsx";
 
 const Home: React.FC<HomeProps> = ({ userData }) => {
- const navigate = useNavigate();
-  const {
-    currentTime,
-    activeNav,
-    getUserName,
-    handleNavigationClick,
-  } = useHome(userData);
+  const navigate = useNavigate();
+  const { currentTime, activeNav, getUserName, handleNavigationClick } =
+    useHome(userData);
 
   const navigationItems = useMemo(
     () =>
@@ -33,19 +30,18 @@ const Home: React.FC<HomeProps> = ({ userData }) => {
     [activeNav]
   );
 
-   const handleUserNameClick = () => {
-    navigate('/notifications');
+  const handleUserNameClick = () => {
+    navigate("/notifications");
   };
 
   const getDotColor = (type: string): string =>
     DOT_COLORS[type as keyof typeof DOT_COLORS] || DOT_COLORS["Money Transfer"];
 
   return (
-    <div className="flex flex-col  bg-[rgba(6,5,3,1)] text-white mx-auto h-full max-w-[375px] rounded-3xl">
-  
-      <Header 
+    <div className="flex flex-col bg-[rgba(6,5,3,1)] text-white mx-auto h-full max-w-[375px] rounded-3xl">
+      <Header
         currentTime={currentTime}
-        showUserInfo={true}
+        showUserInfo
         userName={getUserName()}
         onUserNameClick={handleUserNameClick}
       />
@@ -63,13 +59,11 @@ const Home: React.FC<HomeProps> = ({ userData }) => {
               className="w-6 h-6 mb-1 transition-transform group-hover:scale-110"
             />
             <Text
-              style={{
-                ...TEXT_STYLES.small,
-                color: item.isActive
-                  ? "rgba(255, 255, 255, 1)"
-                  : "rgba(107, 114, 128, 1)",
-              }}
-              className="transition-colors duration-200 group-hover:text-gray-300"
+              className={clsx(
+                TEXT_STYLES.small,
+                "transition-colors duration-200 group-hover:text-gray-300",
+                item.isActive ? "text-white" : "text-gray-400"
+              )}
             >
               {item.name}
             </Text>
@@ -81,10 +75,11 @@ const Home: React.FC<HomeProps> = ({ userData }) => {
         <BalanceCards cards={BALANCE_CARDS} />
 
         <div className="relative flex justify-between items-center rounded-xl py-6 mb-7">
-          <Text style={TEXT_STYLES.expenseTitle}>
-            Expenses in <span className="text-[rgba(254,89,0,1)]">June</span>
+          <Text as="div" className={TEXT_STYLES.expenseTitle}>
+            Expenses in{" "}
+            <span style={{ color: "rgba(254, 89, 0, 1)" }}>June</span>
           </Text>
-          <Text style={TEXT_STYLES.expenseAmount}>$5,091</Text>
+          <Text className={TEXT_STYLES.expenseAmount}>$5,091</Text>
           <img
             src="/icons_other/Bar.png"
             alt="bar"
@@ -93,9 +88,7 @@ const Home: React.FC<HomeProps> = ({ userData }) => {
         </div>
 
         <div className="mb-6">
-          <Text style={TEXT_STYLES.title} className="mb-3">
-            Today
-          </Text>
+          <Text className={clsx(TEXT_STYLES.title, "mb-3")}>Today</Text>
           {TRANSACTIONS.slice(0, 1).map((transaction) => (
             <TransactionItem
               key={transaction.id}
@@ -104,9 +97,7 @@ const Home: React.FC<HomeProps> = ({ userData }) => {
             />
           ))}
 
-          <Text style={TEXT_STYLES.title} className="mb-3">
-            Yesterday
-          </Text>
+          <Text className={clsx(TEXT_STYLES.title, "mb-3")}>Yesterday</Text>
           {TRANSACTIONS.slice(1).map((transaction) => (
             <TransactionItem
               key={transaction.id}

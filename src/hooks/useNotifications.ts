@@ -29,8 +29,7 @@ export const useNotifications = () => {
 
   const handleBottomNavClick = useCallback((item: string): void => {
     setActiveBottomNav(item);
-    console.log(`Bottom nav: ${item}`);
-  }, []);
+      }, []);
 
   const groupNotificationsByDate = (notifications: Notification[]) => {
     const groups: { [key: string]: Notification[] } = {};

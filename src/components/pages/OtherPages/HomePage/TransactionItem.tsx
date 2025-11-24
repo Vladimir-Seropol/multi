@@ -18,23 +18,21 @@ export const TransactionItem: React.FC<TransactionItemProps> = React.memo(
           className="w-full h-full object-cover"
         />
       </div>
+
       <div className="flex-1">
-        <Text style={TEXT_STYLES.title} className="mb-1">
-          {transaction.name}
-        </Text>
+        <Text className={`${TEXT_STYLES.title} mb-1`}>{transaction.name}</Text>
         <div className="flex items-center">
           <div
             className="w-1.5 h-1.5 rounded-full mr-2 flex-shrink-0"
             style={{ backgroundColor: dotColor }}
           />
-          <Text style={TEXT_STYLES.subtitle}>{transaction.type}</Text>
+          <Text className={TEXT_STYLES.subtitle}>{transaction.type}</Text>
         </div>
       </div>
+
       <div className="text-right">
-        <Text style={TEXT_STYLES.title} className="mb-1">
-          {transaction.amount}
-        </Text>
-        <Text style={TEXT_STYLES.subtitle}>{transaction.date}</Text>
+        <Text className={`${TEXT_STYLES.title} mb-1`}>{transaction.amount}</Text>
+        <Text className={TEXT_STYLES.subtitle}>{transaction.date}</Text>
       </div>
     </div>
   )
