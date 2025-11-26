@@ -1,4 +1,4 @@
-import type { Notification, NotificationFilter } from "../../../../types/types";
+import type { Notification, NotificationFilter } from "@/types/types";
 
 export const NOTIFICATIONS: Notification[] = [
   {

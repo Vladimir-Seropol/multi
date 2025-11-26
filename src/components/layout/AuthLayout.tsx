@@ -1,17 +1,17 @@
 import React from "react";
 import Button from "../ui/Button";
-import type { AuthLayoutProps } from "../../types/types";
+import type { AuthLayoutProps } from "@/types/types";
 
 const AuthLayout: React.FC<AuthLayoutProps> = ({
   children,
-  showBackButton = false,
+  showonBack = false,
   onBack,
 }) => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full px-8 space-y-8">
         <div className="relative flex items-center justify-between">
-          {showBackButton ? (
+          {showonBack ? (
             <Button
               type="button"
               variant="light"

@@ -1,5 +1,5 @@
 import React from "react";
-import type { NotificationItemProps } from "../../../../types/types";
+import type { NotificationItemProps } from "@/types/types";
 import { Text } from "../ui/Text";
 import { TEXT_STYLES } from "../ui/home";
 import clsx from "clsx";
@@ -52,7 +52,7 @@ export const NotificationItem: React.FC<NotificationItemProps> = React.memo(
               </div>
             )}
 
-            <div className="flex justify-between items-center gap-1 w-full">
+            <div className="flex  items-center gap-1 w-full">
               <Text className={TEXT_STYLES.subtitle}>
                 {notification.date}, {notification.time}
               </Text>

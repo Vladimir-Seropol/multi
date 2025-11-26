@@ -1,5 +1,5 @@
 import React from 'react';
-import type { AuthHeaderProps } from '../../types/types';
+import type { AuthHeaderProps } from '@/types/types';
 
 
 const AuthHeader: React.FC<AuthHeaderProps> = ({ title, subtitle, subtitle2 }) => {

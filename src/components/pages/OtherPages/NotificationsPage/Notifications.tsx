@@ -1,12 +1,15 @@
 import React, { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { useNotifications } from "../../../../hooks/useNotifications";
-import { NOTIFICATIONS, NOTIFICATION_FILTERS } from "../NotificationsPage/notificationsData";
+import { useNotifications } from "@/hooks/useNotifications";
+import {
+  NOTIFICATIONS,
+  NOTIFICATION_FILTERS,
+} from "../NotificationsPage/notificationsData";
 import { Text } from "../ui/Text";
 import { NotificationItem } from "./NotificationItem";
 import { TEXT_STYLES } from "../ui/home";
-import { Header } from "../../../layout/Header";
-import { BottomNavigation } from "../../../layout/BottomNavigation";
+import { Header } from "@/components/layout/Header";
+import { BottomNavigation } from "@/components/layout/BottomNavigation";
 import clsx from "clsx";
 
 const Notifications: React.FC = () => {
@@ -47,8 +50,8 @@ const Notifications: React.FC = () => {
     <div className="flex flex-col min-h-screen bg-[rgba(6,5,3,1)] text-white mx-auto max-w-[375px] rounded-3xl">
       <Header
         currentTime={currentTime}
-        showBackButton
-        onBackClick={handleBackClick}
+        showonBack
+        onBack={handleBackClick}
         pageTitle="Notifications"
       />
 
@@ -71,21 +74,26 @@ const Notifications: React.FC = () => {
       </div>
 
       <div className="flex-1 px-5 overflow-y-auto">
-        {Object.entries(groupedNotifications).map(([dateGroup, notifications]) => (
-          <div key={dateGroup} className="mb-8">
-            <Text
-              className={clsx(TEXT_STYLES.title, "mb-4 uppercase tracking-wider")}
-            >
-              {dateGroup}
-            </Text>
-            {notifications.map((notification) => (
-              <NotificationItem
-                key={notification.id}
-                notification={notification}
-              />
-            ))}
-          </div>
-        ))}
+        {Object.entries(groupedNotifications).map(
+          ([dateGroup, notifications]) => (
+            <div key={dateGroup} className="mb-8">
+              <Text
+                className={clsx(
+                  TEXT_STYLES.title,
+                  "mb-4 uppercase tracking-wider"
+                )}
+              >
+                {dateGroup}
+              </Text>
+              {notifications.map((notification) => (
+                <NotificationItem
+                  key={notification.id}
+                  notification={notification}
+                />
+              ))}
+            </div>
+          )
+        )}
       </div>
       <BottomNavigation />
     </div>

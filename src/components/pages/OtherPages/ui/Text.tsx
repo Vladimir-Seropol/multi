@@ -1,5 +1,5 @@
 import React from "react";
-import type { TextProps } from "../../../../types/types";
+import type { TextProps } from "@/types/types";
 
 export const Text: React.FC<TextProps & { as?: keyof JSX.IntrinsicElements }> = ({
   children,

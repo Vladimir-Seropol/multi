@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { useFormContext, Controller } from "react-hook-form";
-import FormButtons from "../../ui/FormButtons";
-import Button from "../../ui/Button";
-import AuthLayout from "../../layout/AuthLayout";
-import AuthHeader from "../../ui/AuthHeader";
-import type { FormData } from "../../../types/types";
-import { useState, useEffect } from "react";
+import FormButtons from "@/components/ui/FormButtons";
+import Button from "@/components/ui/Button";
+import AuthLayout from "@/components/layout/AuthLayout";
+import AuthHeader from "@/components/ui/AuthHeader";
+import type { FormData } from "@/types/types";
+import { useState, useEffect, useRef } from "react";
 
 const Step2 = () => {
   const navigate = useNavigate();
@@ -16,11 +16,15 @@ const Step2 = () => {
     watch,
     setValue,
   } = useFormContext<FormData>();
+
   const [showError, setShowError] = useState(false);
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [showContinueButton, setShowContinueButton] = useState(false);
   const [showGetNewButton, setShowGetNewButton] = useState(false);
   const [timeLeft, setTimeLeft] = useState(30);
+
+
+  const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   const authCode = watch("authCode");
 
@@ -77,7 +81,7 @@ const Step2 = () => {
   }, [authCode]);
 
   return (
-    <AuthLayout showBackButton onBack={handleBack}>
+    <AuthLayout showonBack onBack={handleBack}>
       <form onSubmit={handleSubmit(onSubmit)} className="mt-8 space-y-6">
         <AuthHeader
           title="Two-Factor Authentication"
@@ -109,6 +113,7 @@ const Step2 = () => {
                       key={index}
                       type="text"
                       maxLength={1}
+                      ref={(el) => (inputRefs.current[index] = el)}
                       className={`w-[52px] h-[60px] text-center text-xl font-bold border-2 rounded-md ${
                         shouldShowError ? "border-red-500" : "border-gray-300"
                       } focus:border-indigo-500 focus:outline-none`}
@@ -122,24 +127,14 @@ const Step2 = () => {
                           handleInputChange();
 
                           if (value && index < 5) {
-                            const nextInput = document.querySelector(
-                              `input[name=digit-${index + 1}]`
-                            ) as HTMLInputElement;
-                            nextInput?.focus();
+                            inputRefs.current[index + 1]?.focus();
                           }
                         }
                       }}
                       onBlur={field.onBlur}
                       onKeyDown={(e) => {
-                        if (
-                          e.key === "Backspace" &&
-                          !field.value[index] &&
-                          index > 0
-                        ) {
-                          const prevInput = document.querySelector(
-                            `input[name=digit-${index - 1}]`
-                          ) as HTMLInputElement;
-                          prevInput?.focus();
+                        if (e.key === "Backspace" && !field.value[index] && index > 0) {
+                          inputRefs.current[index - 1]?.focus();
                         }
                       }}
                       onPaste={(e) => {
@@ -148,12 +143,11 @@ const Step2 = () => {
                           .getData("text")
                           .replace(/\D/g, "")
                           .slice(0, 6);
+
                         const newAuthCode = [...field.value];
 
                         pasteData.split("").forEach((char, i) => {
-                          if (i < 6) {
-                            newAuthCode[i] = char;
-                          }
+                          newAuthCode[i] = char;
                         });
 
                         field.onChange(newAuthCode);
@@ -161,10 +155,7 @@ const Step2 = () => {
 
                         if (pasteData.length > 0) {
                           const lastIndex = Math.min(pasteData.length - 1, 5);
-                          const lastInput = document.querySelector(
-                            `input[name=digit-${lastIndex}]`
-                          ) as HTMLInputElement;
-                          lastInput?.focus();
+                          inputRefs.current[lastIndex]?.focus();
                         }
                       }}
                       name={`digit-${index}`}

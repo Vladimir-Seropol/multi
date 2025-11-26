@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useFormContext, Controller } from "react-hook-form";
-import FormField from "../../ui/FormField";
-import FormButtons from "../../ui/FormButtons";
-import AuthLayout from "../../layout/AuthLayout";
-import AuthHeader from "../../ui/AuthHeader";
-import type { FormData } from "../../../types/types";
+import FormField from "@/components/ui/FormField";
+import FormButtons from "@/components/ui/FormButtons";
+import AuthLayout from "@/components/layout/AuthLayout";
+import AuthHeader from "@/components/ui/AuthHeader";
+import type { FormData } from "@/types/types";
 
 const Step1 = () => {
   const navigate = useNavigate();

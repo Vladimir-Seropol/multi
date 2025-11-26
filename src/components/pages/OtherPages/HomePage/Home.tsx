@@ -1,7 +1,7 @@
 // Home.tsx
 import React, { useMemo } from "react";
-import type { HomeProps } from "../../../../types/types";
-import { useHome } from "../../../../hooks/useHome";
+import type { HomeProps } from "@/types/types";
+import { useHome } from "@/hooks/useHome";
 import {
   TRANSACTIONS,
   BALANCE_CARDS,
@@ -11,8 +11,8 @@ import { TEXT_STYLES, DOT_COLORS } from "../ui/home";
 import { Text } from "../ui/Text";
 import { TransactionItem } from "../HomePage/TransactionItem";
 import { BalanceCards } from "../HomePage/BalanceCards";
-import { Header } from "../../../layout/Header";
-import { BottomNavigation } from "../../../layout/BottomNavigation";
+import { Header } from "@/components/layout/Header";
+import { BottomNavigation } from "@/components/layout/BottomNavigation";
 import { useNavigate } from "react-router-dom";
 import clsx from "clsx";
 
@@ -77,7 +77,7 @@ const Home: React.FC<HomeProps> = ({ userData }) => {
         <div className="relative flex justify-between items-center rounded-xl py-6 mb-7">
           <Text as="div" className={TEXT_STYLES.expenseTitle}>
             Expenses in{" "}
-            <span style={{ color: "rgba(254, 89, 0, 1)" }}>June</span>
+            <span className= "text-[#FE5900]">June</span>
           </Text>
           <Text className={TEXT_STYLES.expenseAmount}>$5,091</Text>
           <img

@@ -1,5 +1,5 @@
 import React from "react";
-import type { BalanceCardsProps } from "../../../../types/types";
+import type { BalanceCardsProps } from "@/types/types";
 
 
 

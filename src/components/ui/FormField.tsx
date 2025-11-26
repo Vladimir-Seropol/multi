@@ -1,4 +1,4 @@
-import type { FormFieldProps } from '../../types/types';
+import type { FormFieldProps } from '@/types/types';
 
 const FormField = ({
   value,

@@ -20,9 +20,9 @@ export interface FormFieldProps {
   onChange: (value: string) => void;
   onBlur?: () => void;
   error?: string;
-  type?: "email" | "password" | "text"; 
+  type?: "email" | "password" | "text";
   placeholder?: string;
-  name: string; 
+  name: string;
   icon?: string;
 }
 
@@ -43,7 +43,6 @@ export interface ButtonProps {
   className?: string;
   fullWidth?: boolean;
 }
-
 
 export interface Notification {
   id: string;
@@ -66,6 +65,11 @@ export interface Transaction {
   amount: string;
   date: string;
   icon: string;
+}
+
+export interface TransactionItemProps {
+  transaction: Transaction;
+  dotColor: string;
 }
 
 export interface BalanceCard {
@@ -101,29 +105,24 @@ export interface NotificationFilter {
   isActive: boolean;
 }
 
-
 export interface HeaderProps {
   currentTime: string;
   showUserInfo?: boolean;
   userName?: string;
   onUserNameClick?: () => void;
-  showBackButton?: boolean;
-  onBackClick?: () => void;
+  showonBack?: boolean;
+  onBack?: () => void;
   pageTitle?: string;
 }
 
-
-
 export interface AuthLayoutProps {
   children: React.ReactNode;
-  showBackButton?: boolean;
+  showonBack?: boolean;
   onBack?: () => void;
 }
 
-
-
 export type TextProps = {
-  children: React.ReactNode; 
+  children: React.ReactNode;
   className?: string;
   style?: CSSProperties;
 };

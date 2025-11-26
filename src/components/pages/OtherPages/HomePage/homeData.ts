@@ -1,4 +1,4 @@
-import type { Transaction, BalanceCard, NavigationItem } from "../../../../types/types";
+import type { Transaction, BalanceCard, NavigationItem } from "@/types/types";
 
 export const TRANSACTIONS: Transaction[] = [
   {
